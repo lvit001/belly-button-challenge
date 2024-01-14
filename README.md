@@ -16,7 +16,7 @@
 3. Used code to create a bubble chart that updates based on the Sample ID selected in the dropdown menu
   - ![image](https://github.com/lvit001/belly-button-challenge/assets/140283164/f0aaf8df-72ac-4dfb-bc31-2f90c66e1822)
 4. Used code to add subject demographic info from the metadata array into the demographic info table, this table also updates based on the subject id selected
-  - ![image](https://github.com/lvit001/belly-button-challenge/assets/140283164/f0aaf8df-72ac-4dfb-bc31-2f90c66e1822)
+  - ![image](https://github.com/lvit001/belly-button-challenge/assets/140283164/28e9e311-1d17-4997-8b28-843b854d4227)
 5. Accessed data in the names array to include them in the dropdown selector for switching test subjects
   - ![image](https://github.com/lvit001/belly-button-challenge/assets/140283164/166fd71f-cb3c-4674-aea0-c30b3706e7f3)
   - ![image](https://github.com/lvit001/belly-button-challenge/assets/140283164/6fc362a7-3772-47d4-8527-7ac6e60f7ce1)
