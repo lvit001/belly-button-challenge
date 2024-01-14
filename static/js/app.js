@@ -87,7 +87,8 @@ function bubbleChart(sampleId) {
         let bubbleLayout = {
             title: "OTU Frequency Bubble Chart",
             height: 600,
-            width: 1200
+            width: 1200,
+            xaxis: {title: "OTU ID"},
         };
 
         // Render the plot to the div tag with id "plot"
@@ -114,19 +115,15 @@ function metaData(sampleId) {
         // clear out the demographics table when a new subject is selected
         demographicInfoTable.html('');
         console.log(`Clearing demographics for previous Sample ID`)
-
-        // Object.entries(metaData).map(([key, value]) => {
-        //     demographicInfoTable.append('h6').text(`${key}: ${value}`)
-
+       
+        // Add the metadata object in for the sampleId
         // code for help adding key-value pairs in an object to the html file: 
         // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
-        // Add the metadata object in for the sampleId
         for (const [key, value] of Object.entries(metaData)) {
             demographicInfoTable.append('h4').text(`${key}: ${value}`);
         }
     })
 }
-
 // define a function to add the name values to the selector
 function init() {
     console.log(`Initializing Charts`)
