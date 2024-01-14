@@ -92,7 +92,7 @@ function bubbleChart(sampleId) {
     })
 }
 
-// define a function to displaye the meta data
+// define a function to display the meta data
 function metaData(sampleId) {
 
     // read in the json link
@@ -107,6 +107,9 @@ function metaData(sampleId) {
         // access the demographic info tag in the index.html file
         let demographicInfoTable = d3.Select("#sample-metadata");
 
-
+        // Add the metadata object in for the sampleId
+        Object.entries(metaData).map(([key, value]) => {
+            demographicInfoTable.append('h6').text(`${key}: ${value}`);
+        });
     })
 }
