@@ -154,7 +154,7 @@ function init() {
 }
 
 // define a function for when the subject id is changed with the selector
-function newSelection(sampleId) {
+function optionChanged(sampleId) {
 
     console.log(`New Sample ID selected: ${sampleId}`);
 
