@@ -19,8 +19,11 @@ function horizontalBarGraph(sampleId) {
 
         // pull out the top 10 for each of the variables using slice and reverse
         let sampleValuesTen = sampleValues.slice(0, 10).reverse()
+        console.log(sampleValuesTen)
         let otuIdsTen = otuIds.slice(0, 10).map(otuId => `OTU ${otuId}`).reverse()
+        console.log(otuIdsTen)
         let otuLabelsTen = otuLabels.slice(0, 10).reverse()
+        console.log(otuLabelsTen)
 
         // Trace1 for the horizontal barchart
         let trace1 = {
@@ -55,14 +58,17 @@ function bubbleChart(sampleId) {
         
         // filter the data for the specific sampleId being selected in the selector
         let sampleData = samples.filter(sample => sample.id == sampleId)[0];
-
+        
         // // need to go down one level since the data for each sample is in an array
         // let sampleData = sampleArray[0];
 
         // save each of the datasets required for the chart to a variable
         let sampleValues = sampleData.sample_values;
+        console.log(sampleValues)
         let otuIds = sampleData.otu_ids;
+        console.log(otuIds)
         let otuLabels = sampleData.otu_labels;
+        console.log(otuLabels)
 
         // Trace2 for the bubble chart
         var trace2 = {
@@ -103,13 +109,41 @@ function metaData(sampleId) {
         
         // filter the data for the specific sampleId being selected in the selector
         let metaData = metaDataArray.filter(md => md.id == sampleId)[0];
+        console.log(metaData)
 
         // access the demographic info tag in the index.html file
         let demographicInfoTable = d3.Select("#sample-metadata");
 
+        
+        // Object.entries(metaData).map(([key, value]) => {
+        //     demographicInfoTable.append('h6').text(`${key}: ${value}`)
+
+        // code for help adding key-value pairs in an object to the html file: 
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
         // Add the metadata object in for the sampleId
-        Object.entries(metaData).map(([key, value]) => {
-            demographicInfoTable.append('h6').text(`${key}: ${value}`);
-        });
+        for (const [key, value] of Object.entries(metaData)) {
+            demographicInfoTable.append('h4').text(`${key}: ${value}`);
+        }
+    })
+}
+
+// define a function to add the name values to the selector
+function metaData(sampleId) {
+
+    // assign the selector to a variable
+    let selector = d3.select('#selDataset')
+
+    // read in the json link
+    d3.json(url).then(data => {console.log(data);
+
+        // grab the names for the labels of the selector
+        let labels = data.names
+        console.log(labels)
+
+        // assign the labels to the selector
+        Object.keys(labels).map((label) => {selector.append('option').text(label)})
+    
+
+
     })
 }
