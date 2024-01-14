@@ -59,9 +59,6 @@ function bubbleChart(sampleId) {
         
         // filter the data for the specific sampleId being selected in the selector
         let sampleData = samples.filter(sample => sample.id == sampleId)[0];
-        
-        // // need to go down one level since the data for each sample is in an array
-        // let sampleData = sampleArray[0];
 
         // save each of the datasets required for the chart to a variable
         let sampleValues = sampleData.sample_values;
