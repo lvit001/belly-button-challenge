@@ -21,7 +21,7 @@
   - ![image](https://github.com/lvit001/belly-button-challenge/assets/140283164/166fd71f-cb3c-4674-aea0-c30b3706e7f3)
   - ![image](https://github.com/lvit001/belly-button-challenge/assets/140283164/6fc362a7-3772-47d4-8527-7ac6e60f7ce1)
 6. Ensured that when the user selects a new test subject from the dropdown menu, all of the charts and demographic data table update
-  - ![image](https://github.com/lvit001/belly-button-challenge/assets/140283164/7b71d3aa-e7e0-4e11-8338-41a7ba30724a)
+  - ![image](https://github.com/lvit001/belly-button-challenge/assets/140283164/35c6bfae-8e0d-4e87-9530-c5fad34056f8)
 ## Resources
 1. Had help with code for displaying properties of an object within an HTML for the metadata function [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries)
 2. Code for creating a bubble chart found [here](https://plotly.com/javascript/bubble-charts/)
