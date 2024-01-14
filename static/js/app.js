@@ -120,7 +120,7 @@ function metaData(sampleId) {
         // code for help adding key-value pairs in an object to the html file: 
         // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
         for (const [key, value] of Object.entries(metaData)) {
-            demographicInfoTable.append('h4').text(`${key}: ${value}`);
+            demographicInfoTable.append('h5').text(`${key}: ${value}`);
         }
     })
 }
