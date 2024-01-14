@@ -3,6 +3,7 @@ const url = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/
 
 // define a function to create the horizontal bar chart
 function horizontalBarGraph(sampleId) {
+    console.log(`Running Bar Chart for Sample ID: ${sampleId}`)
     // read in the json link
     d3.json(url).then(data => {console.log(data);
 
@@ -19,11 +20,11 @@ function horizontalBarGraph(sampleId) {
 
         // pull out the top 10 for each of the variables using slice and reverse
         let sampleValuesTen = sampleValues.slice(0, 10).reverse()
-        console.log(sampleValuesTen)
+        console.log(`Top 10 Sample Values for Sample ID ${sampleId}: ${sampleValuesTen}`);
         let otuIdsTen = otuIds.slice(0, 10).map(otuId => `OTU ${otuId}`).reverse()
-        console.log(otuIdsTen)
+        console.log(`Top 10 OTU IDs for Sample ID ${sampleId}: ${otuIdsTen}`);
         let otuLabelsTen = otuLabels.slice(0, 10).reverse()
-        console.log(otuLabelsTen)
+        console.log(`Top 10 OTU Labels for Sample ID ${sampleId}: ${otuLabelsTen}`);
 
         // Trace1 for the horizontal barchart
         let trace1 = {
@@ -49,7 +50,7 @@ function horizontalBarGraph(sampleId) {
 
 // define a function to create the bubble chart
 function bubbleChart(sampleId) {
-
+    console.log(`Running Bubble Chart for Sample ID: ${sampleId}`)
     // read in the json link
     d3.json(url).then(data => {console.log(data);
 
@@ -64,11 +65,8 @@ function bubbleChart(sampleId) {
 
         // save each of the datasets required for the chart to a variable
         let sampleValues = sampleData.sample_values;
-        console.log(sampleValues)
         let otuIds = sampleData.otu_ids;
-        console.log(otuIds)
         let otuLabels = sampleData.otu_labels;
-        console.log(otuLabels)
 
         // Trace2 for the bubble chart
         var trace2 = {
@@ -89,7 +87,7 @@ function bubbleChart(sampleId) {
         let bubbleLayout = {
             title: "OTU Frequency Bubble Chart",
             height: 600,
-            width: 600
+            width: 1200
         };
 
         // Render the plot to the div tag with id "plot"
@@ -100,7 +98,7 @@ function bubbleChart(sampleId) {
 
 // define a function to display the meta data
 function metaData(sampleId) {
-
+    console.log(`Running MetaData for Sample ID: ${sampleId}`)
     // read in the json link
     d3.json(url).then(data => {console.log(data);
 
@@ -109,12 +107,14 @@ function metaData(sampleId) {
         
         // filter the data for the specific sampleId being selected in the selector
         let metaData = metaDataArray.filter(md => md.id == sampleId)[0];
-        console.log(metaData)
 
         // access the demographic info tag in the index.html file
-        let demographicInfoTable = d3.Select("#sample-metadata");
+        let demographicInfoTable = d3.select("#sample-metadata");
 
-        
+        // clear out the demographics table when a new subject is selected
+        demographicInfoTable.html('');
+        console.log(`Clearing demographics for previous Sample ID`)
+
         // Object.entries(metaData).map(([key, value]) => {
         //     demographicInfoTable.append('h6').text(`${key}: ${value}`)
 
@@ -128,22 +128,43 @@ function metaData(sampleId) {
 }
 
 // define a function to add the name values to the selector
-function metaData(sampleId) {
+function init() {
+    console.log(`Initializing Charts`)
 
     // assign the selector to a variable
-    let selector = d3.select('#selDataset')
+    let selector = d3.select('#selDataset');
 
     // read in the json link
     d3.json(url).then(data => {console.log(data);
 
         // grab the names for the labels of the selector
-        let labels = data.names
-        console.log(labels)
+        let labels = data.names;
 
         // assign the labels to the selector
-        Object.keys(labels).map((label) => {selector.append('option').text(label)})
+        labels.map(label => {
+            selector.append("option").text(label).property("value", label);
+        })
     
+        // select the start value for the selector
+        let startId = labels[0];
 
+        // use the start id in the charts & metadata
+        horizontalBarGraph(startId);
+        bubbleChart(startId);
+        metaData(startId);
 
     })
 }
+
+// define a function for when the subject id is changed with the selector
+function optionChanged(sampleId) {
+
+    console.log(`New Sample ID selected: ${sampleId}`);
+
+    horizontalBarGraph(sampleId);
+    bubbleChart(sampleId);
+    metaData(sampleId);
+
+}
+
+init();
