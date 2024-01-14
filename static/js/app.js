@@ -21,7 +21,7 @@ function horizontalBarGraph(sampleId) {
         // pull out the top 10 for each of the variables using slice and reverse
         let sampleValuesTen = sampleValues.slice(0, 10).reverse()
         console.log(`Top 10 Sample Values for Sample ID ${sampleId}: ${sampleValuesTen}`);
-        let otuIdsTen = otuIds.slice(0, 10).map(otuId => `OTU ${otuId}`).reverse()
+        let otuIdsTen = otuIds.map(otuId => `OTU ${otuId}`).slice(0, 10).reverse()
         console.log(`Top 10 OTU IDs for Sample ID ${sampleId}: ${otuIdsTen}`);
         let otuLabelsTen = otuLabels.slice(0, 10).reverse()
         console.log(`Top 10 OTU Labels for Sample ID ${sampleId}: ${otuLabelsTen}`);
